@@ -1,8 +1,10 @@
-    var express = require('express')
+    //Creating server
+	var express = require('express')
       , app = express.createServer()
       , mongoose = require('mongoose');
-
-    mongoose.connect('mongodb://127.0.0.1/ProductDB');
+	  
+	//Connecting to MongoDB
+    mongoose.connect('mongodb://localhost/ProductDB');
 	
 	//Models using Mongoose
     var Schema = mongoose.Schema
@@ -24,7 +26,16 @@
      //Get all product catalog 
     app.get('/', function(req,res){	
         ProductCatalog.find({}, function(error, data){
-            res.json(data);
+			if(error){
+			 res.json(error);
+			}
+			else if(data == null){
+			 res.json('Data not found!')
+			}
+			else{
+			  res.json(data);
+			}
+            
         });
     });
 	//Get a specified category
@@ -43,23 +54,23 @@
     });
 	
 	//Add category
-    app.get('/addcategory/:name/:description', function(req, res){
-        var category_data = {
-            name: req.params.name
-          , description: req.params.description         
-        };
+	app.get('/addcategory/:name/:description', function(req, res){
+		var categoryData = {
+			name: req.params.name
+		  , description: req.params.description         
+		};
 
-        var category = new ProductCatalog(category_data);
+		var category = new ProductCatalog(categoryData);
 
-        category.save( function(error, data){
-            if(error){
-                res.json(error);
-            }
-            else{
-                res.json(data);
-            }
-        });
-    });
+		category.save( function(error, data){
+			if(error){
+				res.json(error);
+			}
+			else{
+				res.json(data);
+			}
+		});
+	});
 	//Add product to a category
     app.get('/addproduct/:category/:name/:unitPrice/:itemsInStock', function(req, res){
         ProductCatalog.findOne({ name: req.params.category }, function(error, category){
