@@ -34,7 +34,7 @@
                 res.json(error);
             }
             else if(category == null){
-                res.json('no such category!')
+                res.json('Category not found!')
             }
             else{
 				res.json(category);	
@@ -67,7 +67,7 @@
                 res.json(error);
             }
             else if(category == null){
-                res.json('no such category!')
+                res.json('Category not found!')
             }
             else{
                 category.products.push({ name: req.params.name, unitPrice: req.params.unitPrice,itemsInStock: req.params.itemsInStock });
