@@ -15,7 +15,10 @@ npm install express
 npm install mongoose
 
 <b>To run the app</b>
-
-Node Server.js
+<ol>
+<li>Run the MongoDB server (Run mongod.exe)</li>
+<li>Node Server.js</li>
+<li>Browse the app from http://localhost:8000/ </li>
+</ol>
 
 
