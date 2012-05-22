@@ -1,4 +1,4 @@
-RESTNode - REST API samples using Node.js and MongoDB
+RESTNode - REST API samples using Node.js with MongoDB and Mongoose
 =====================================================
 
 <b>Blog Posts</b> 
